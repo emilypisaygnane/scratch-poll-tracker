@@ -12,7 +12,7 @@ const optionBInput = document.getElementById('option-b-input');
 // let state
 const pastPolls = [];
 
-let currentPol = {
+let currentPoll = {
     optionA: '',
     optionB: '',
     votesA: 0,
@@ -24,9 +24,25 @@ optionForm.addEventListener('submit', (e) => {
 
     const data = new FormData(optionForm);
 
-    
-})
+    const optionA = data.get ('option-a');
+    const optionB = data.get ('option-b');
+  
+    currentPollEl.optionA = optionA;
+    currentPollEl.optionB = optionB;
 
+    optionForm.requestFullscreen();
+    refreshCurrentPollEl();
+
+});
+
+function refreshCurrentPollEl() {
+    currentPoll.textContent = '';
+
+    optionAInput.textContent = currentPoll.optionA;
+    optionBInput.textContent = currentPoll.optionB;
+
+    const pollEl = renderPoll(currentPoll);
+}
 // set event listeners 
   // get user input
   // use user input to update state 
