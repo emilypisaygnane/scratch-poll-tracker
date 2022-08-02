@@ -12,17 +12,76 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/global.css" />
-    <title>Web App</title>
+    <title>Scratch Poll Tracker</title>
 </head>
 
 <body>
-    <header>
-        <img src="/assets/html_css_js.png">
-        <h1>Web App</h1>
-    </header>
-
     <main>
+        <section class="main-section">
+            <div id="current-poll">
+                <h2>Your Poll:</h2>
+                <div id="current-poll-container">
 
+                </div>
+
+
+        <section>
+            <label>
+                Question:
+                <input id="question-input"/>
+            </label>
+        </section>
+            <div class="form-and-buttons">
+                <form id="option-form">
+                    <label>
+                        Option A
+                        <input id="option-a" />
+                    </label>
+                    <label>
+                        Option B
+                        <input id="option-b" />
+                    </label>
+                    <button>Enter Your Options</button>
+                </form>
+
+                <div class="buttons">
+                    <div class="top-buttons">
+                        <div class="left-buttons">
+                            <h3 id="option-a-input"></h3>
+                            <button id="option-a-add-button">
+                                Add
+                            </button>
+                            <button id="option-a-subtract-button">
+                                Subtract
+                            </button>
+                        </div>
+                        <div class="right-buttons">
+                            <h3 id="option-b-input"></h3>
+                            <button id="option-b-add-button">
+                                Add
+                            </button>
+                            <button id="option-b-subtract-button">
+                                Subtract
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="bottom-buttons">
+                        <button id="finsish-poll=button">
+                            Finish Poll
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+            <div>
+                <h2>Past Polls:</h2>
+            </div>
+            <div id="past-polls-container">
+                
+            </div>
+        </section>
+        
     </main>
 
     <footer>&copy;2022 Software Developer</footer>
