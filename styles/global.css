@@ -33,3 +33,16 @@ footer {
     justify-content: flex-end;
     background-color: var(--footer-background);
 }
+
+label {
+    display: flex;
+}
+
+.poll .options .buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.left-buttons {
+    display: flex;
+}
