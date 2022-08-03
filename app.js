@@ -1,76 +1,93 @@
 // import functions and grab DOM elements
 import { renderPoll } from './test/render-poll.js';
+
 const currentPollEl = document.getElementById('current-poll-container');
 const pastPollsEl = document.getElementById('past-poll-container');
 
 const optionForm = document.getElementById('option-form');
+const enterPollButton = document.querySelector('#enter-button');
+const questionEl = document.getElementById('question-input');
 const optionAAddButton = document.getElementById('option-a-add-button');
 const optionBAddButton = document.getElementById('option-b-add-button');
 const optionASubtractButton = document.getElementById('option-a-subtract-button');
 const optionBSubtractButton = document.getElementById('option-b-subtract-button');
 const finishPollButton = document.getElementById('finish-poll=button');
-const optionAInput = document.getElementById('option-a-input');
-const optionBInput = document.getElementById('option-b-input');
+const optionAInputEl = document.getElementById('option-a-input');
+const optionBInputEl = document.getElementById('option-b-input');
+
 // let state
-const pastPolls = [];
 
-let currentPoll = {
-    optionA: '',
-    optionB: '',
-    votesA: 0,
-    votesB: 0,
-};
+let question = '';
+let optionA = '';
+let optionB = '';
+let votesA = 0;
+let votesB = 0;
+let pastPolls = [];
 
-optionForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+enterPollButton.addEventListener('click', () =>{
 
-    const data = new FormData(optionForm);
+    const currentPoll = {
+        question: question,
+        optionA: optionA,
+        optionB: optionB,
+        votesA: votesA,
+        votesB: votesB
+    };
 
-    const optionA = data.get ('option-a');
-    const optionB = data.get ('option-b');
-  
-    currentPollEl.optionA = optionA;
-    currentPollEl.optionB = optionB;
+    pastPolls.push(currentPoll);
 
-    optionForm.requestFullscreen();
-    refreshCurrentPollEl();
+    pastPollsEl.textContent = '';
 
+    for (let poll of pastPolls) {
+        const pollEl = renderPoll(poll.question, poll.optionA, poll.optionB, poll.votesA, poll.votesB)
+
+        pastPollsEl.append(pollEl);
+    }
+
+    question = '';
+    optionA = '';
+    optionB = '';
+    votesA = 0;
+    votesB = 0;
+
+    questionEl.value = '';
+    optionA.value = '';
+    optionB.value = '';
+
+    displayCurrentPoll();
 });
 
 optionAAddButton.addEventListener ('click', () => {
-    currentPoll.votesA++;
+    votesA++;
 
-    refreshCurrentPollEl();
+    displayCurrentPoll();
 });
 
 optionBAddButton.addEventListener ('click', () => {
-    currentPoll.votesB++;
+    votesB++;
 
-    refreshCurrentPollEl();
+    displayCurrentPoll();
 });
 
 optionASubtractButton.addEventListener ('click', () => {
-    currentPoll.votesA--;
+    votesA--;
 
-    refreshCurrentPollEl();
+    displayCurrentPoll();
 });
 
 optionBSubtractButton.addEventListener ('click', () => {
-    currentPoll.votesB--;
+    votesB--;
 
-    refreshCurrentPollEl();
+    displayCurrentPoll();
 });
 
-function refreshCurrentPollEl() {
-    currentPoll.textContent = '';
+function displayCurrentPoll() {
+    currentPollEl.textContent = '';
 
-    optionAInput.textContent = currentPoll.optionA;
-    optionBInput.textContent = currentPoll.optionB;
-
-    const pollEl = renderPoll(currentPoll);
+    const pollEl = renderPoll(question, optionA, optionB, votesA, votesB);
 
     pollEl.classList.add('current');
-    
+
     currentPollEl.append(pollEl);
 }
 
@@ -98,6 +115,6 @@ finishPollButton.addEventListener('click', () => {
         votesB: 0,
     };
 
-    refreshCurrentPollEl();
+    displayCurrentPoll();
 });
 
