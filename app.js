@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-import { renderPoll } from "./test/render-poll.js";
+import { renderPoll } from './test/render-poll.js';
 const currentPollEl = document.getElementById('current-poll-container');
 const pastPollsEl = document.getElementById('past-poll-container');
 
@@ -8,6 +8,7 @@ const optionAAddButton = document.getElementById('option-a-add-button');
 const optionBAddButton = document.getElementById('option-b-add-button');
 const optionASubtractButton = document.getElementById('option-a-subtract-button');
 const optionBSubtractButton = document.getElementById('option-b-subtract-button');
+const finishPollButton = document.getElementById('finish-poll=button');
 const optionAInput = document.getElementById('option-a-input');
 const optionBInput = document.getElementById('option-b-input');
 // let state
@@ -36,8 +37,29 @@ optionForm.addEventListener('submit', (e) => {
 
 });
 
-optionAAddButton.
+optionAAddButton.addEventListener ('click', () => {
+    currentPoll.votesA++;
 
+    refreshCurrentPollEl();
+});
+
+optionBAddButton.addEventListener ('click', () => {
+    currentPoll.votesB++;
+
+    refreshCurrentPollEl();
+});
+
+optionASubtractButton.addEventListener ('click', () => {
+    currentPoll.votesA--;
+
+    refreshCurrentPollEl();
+});
+
+optionBSubtractButton.addEventListener ('click', () => {
+    currentPoll.votesB--;
+
+    refreshCurrentPollEl();
+});
 
 function refreshCurrentPollEl() {
     currentPoll.textContent = '';
@@ -51,4 +73,31 @@ function refreshCurrentPollEl() {
     
     currentPollEl.append(pollEl);
 }
+
+function displayAllPolls() {
+    pastPollsEl.textContent = '';
+
+    for (let poll of pastPolls) {
+        const pollEl = renderPoll(poll);
+
+        pollEl.classList.add('past');
+
+        pastPollsEl.append(pollEl);
+    }
+}
+
+finishPollButton.addEventListener('click', () => {
+    pastPolls.push(currentPoll);
+
+    displayAllPolls();
+
+    currentPoll = {
+        optionA: '',
+        optionB: '',
+        votesA: 0,
+        votesB: 0,
+    };
+
+    refreshCurrentPollEl();
+});
 
