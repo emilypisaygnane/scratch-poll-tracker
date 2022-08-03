@@ -1,4 +1,5 @@
 // import functions and grab DOM elements
+import { renderPoll } from "./test/render-poll.js";
 const currentPollEl = document.getElementById('current-poll-container');
 const pastPollsEl = document.getElementById('past-poll-container');
 
@@ -35,6 +36,9 @@ optionForm.addEventListener('submit', (e) => {
 
 });
 
+optionAAddButton.
+
+
 function refreshCurrentPollEl() {
     currentPoll.textContent = '';
 
@@ -42,8 +46,9 @@ function refreshCurrentPollEl() {
     optionBInput.textContent = currentPoll.optionB;
 
     const pollEl = renderPoll(currentPoll);
+
+    pollEl.classList.add('current');
+    
+    currentPollEl.append(pollEl);
 }
-// set event listeners 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
+
