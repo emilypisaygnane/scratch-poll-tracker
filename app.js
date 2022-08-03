@@ -17,71 +17,55 @@ const optionBInputEl = document.getElementById('option-b-input');
 
 // let state
 
+let pastPolls = [];
+
 let question = '';
 let optionA = '';
 let optionB = '';
 let votesA = 0;
 let votesB = 0;
-let pastPolls = [];
 
-enterPollButton.addEventListener('click', () =>{
 
-    const currentPoll = {
-        question: question,
-        optionA: optionA,
-        optionB: optionB,
-        votesA: votesA,
-        votesB: votesB
-    };
+optionForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const data = new FormData(optionForm);
 
-    pastPolls.push(currentPoll);
+    const optionA = data.get ('option-a');
+    const optionB = data.get ('option-b');
 
-    pastPollsEl.textContent = '';
+    currentPoll.optionA = optionA;
+    currentPoll.optionB = optionB;
 
-    for (let poll of pastPolls) {
-        const pollEl = renderPoll(poll.question, poll.optionA, poll.optionB, poll.votesA, poll.votesB)
-
-        pastPollsEl.append(pollEl);
-    }
-
-    question = '';
-    optionA = '';
-    optionB = '';
-    votesA = 0;
-    votesB = 0;
-
-    questionEl.value = '';
-    optionA.value = '';
-    optionB.value = '';
-
-    displayCurrentPoll();
+    optionForm.reset();
+    displayCurrentPollEl();
 });
 
 optionAAddButton.addEventListener ('click', () => {
-    votesA++;
+    currentPoll.votesA++;
 
-    displayCurrentPoll();
+    displayCurrentPollEl();
 });
 
 optionBAddButton.addEventListener ('click', () => {
-    votesB++;
+    currentPoll.votesB++;
 
-    displayCurrentPoll();
+    displayCurrentPollEl();
 });
 
 optionASubtractButton.addEventListener ('click', () => {
-    votesA--;
+    currentPoll.votesA--;
 
-    displayCurrentPoll();
+    displayCurrentPollEl();
 });
 
 optionBSubtractButton.addEventListener ('click', () => {
-    votesB--;
+    currentPoll.votesB--;
 
-    displayCurrentPoll();
+    displayCurrentPollEl();
 });
 
-function displayCurrentPoll() {
+function displayCurrentPollEl {
     currentPollEl.textContent = '';
 
     const pollEl = renderPoll(question, optionA, optionB, votesA, votesB);
@@ -109,12 +93,13 @@ finishPollButton.addEventListener('click', () => {
     displayAllPolls();
 
     currentPoll = {
+        question: '',
         optionA: '',
         optionB: '',
         votesA: 0,
         votesB: 0,
     };
 
-    displayCurrentPoll();
+    displayCurrentPollEl();
 });
 
