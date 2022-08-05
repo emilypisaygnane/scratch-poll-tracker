@@ -12,80 +12,68 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/global.css" />
-    <title>Scratch Poll Tracker</title>
+    <title>Web App</title>
 </head>
 
 <body>
+    <header>
+        <h1>Make Up Your Mind Girlie! 💁🏻😫</h1>
+    </header>
+
     <main>
-        <section class="main-section">
-            <div id="current-poll">
-                <h2>Your Poll:</h2>
-                <div id="current-poll-container">
-
-                </div>
-
-
-        <section>
-            <label>
-                Question:
-                <input id="question-input"/>
-            </label>
-        </section>
-        
-            <div class="form-and-buttons">
-                <form id="option-form">
-                    <label>
-                        Option A
-                        <input id="option-a" />
+        <div class="top-section">
+            <section class="left-section">
+                <form id="poll-form">
+                    <h2>Your Poll:</h2>
+                    <label>Question:
+                        <input id="input" name="question">
                     </label>
-                    <label>
-                        Option B
-                        <input id="option-b" />
+                    <label>Option A:
+                        <input id="input" name="input-a">
                     </label>
-                    <button id="enter-button">Enter Your Options</button>
+                    <label>Option B:
+                        <input id="input" name="input-b">
+                    </label>
+                    <button id="start-input">Start Your Poll</button>
                 </form>
+            </section>
 
-                <div class="buttons">
-                    <div class="top-buttons">
-                        <div class="left-buttons">
-                            <h3 id="option-a-input"></h3>
-                            <button id="option-a-add-button">
-                                Add
-                            </button>
-                            <button id="option-a-subtract-button" class="undo">
-                                Subtract
-                            </button>
-                        </div>
-                        <div class="right-buttons">
-                            <h3 id="option-b-input"></h3>
-                            <button id="option-b-add-button">
-                                Add
-                            </button>
-                            <button id="option-b-subtract-button" class="undo">
-                                Subtract
-                            </button>
-                        </div>
+            <section class="right-section">
+                    <h2>Current Poll</h2>
+                        <p>Your Question:
+                            <div id="live-question">
+                            
+                            </div>
+                        </p>
+                            <div id="live-option-a">
 
-                    </div>
-                    <div class="bottom-buttons">
-                        <button id="finish-poll=button">
-                            Finish Poll
-                        </button>
-                    </div>
+                            </div>
+                        <p id="option-a-score">0</p>
+                        <button id="option-a-like">Up Votes</button>
+                        <button id="option-a-dislike">Down Votes</button>
+
+                            <div id="live-option-b">
+                        
+                            </div>
+                        <p id="option-b-score">0</p>
+                        <button id="option-b-like">Up Votes</button>
+                        <button id="option-b-dislike">Down Votes</button>
+                        
+                        <div>
+                            <button id="publish-button">Publish</button>
+                        </div>
+            </section>
+        </div>
+        <div>
+            <section class="bottom-section">
+                <div id="past-polls">
+                    
                 </div>
-            </div>
-            <div class="right">
-            <div>
-                <h2>Past Polls:</h2>
-            </div>
-            <div id="past-polls-container">
-
-            </div>
-        </section>
-        
+            </section>
+        </div>
     </main>
 
-    <footer>&copy;2022 Software Developer</footer>
+    <footer>&copy;2022 Emily Pisaygnane</footer>
 
     <script type="module" src="app.js"></script>
 </body>

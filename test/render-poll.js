@@ -1,20 +1,19 @@
-export function renderPoll(question, optionA, optionB, votesA, votesB){
-
-    const pollEl = document.createElement('div');
-    const questionEl = document.createElement('h3');
-    const optionsEl = document.createElement('div');
-    const optionAEl = document.createElement('p');
-    const optionBEl = document.createElement('p');
+export function renderPoll(poll) {
     
-    pollEl.classList.add('poll');
-    optionsEl.classList.add('option');
+    const questionDiv = document.createElement('div');
+    const optionA = document.createElement('p');
+    const optionB = document.createElement('p');
+    const optionACount = document.createElement('p');
+    const optionBCount = document.createElement('p');
 
-    questionEl.textContent = question;
-    optionAEl.textContent = `${optionA} (${votesA} votes)`;
-    optionBEl.textContent = `${optionB} (${votesB} votes)`;
+    questionDiv.textContent = poll.question;
+    optionA.textContent = poll.optionA;
+    optionB.textContent = poll.optionB;
+    optionACount.textContent = poll.optionACount;
+    optionBCount.textContent = poll.optionBCount;
 
-    pollEl.append(questionEl, optionsEl);
-    optionsEl.append(optionAEl, optionBEl);
-
-    return pollEl;
+    questionDiv.append(optionA, optionACount, optionB, optionBCount);
+        
+    return questionDiv;
+    
 }

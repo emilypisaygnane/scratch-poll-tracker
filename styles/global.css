@@ -7,7 +7,7 @@
 body {
     height: 100vh;
     font-family: 'Rubik', san-serif;
-    background: var(--background);
+    background: plum;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
@@ -16,8 +16,9 @@ header {
     position: sticky;
     top: 0;
     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: var(--header-background);
+    background-color: pink;
 }
 
 main {
@@ -31,18 +32,35 @@ footer {
     font-size: .8em;
     display: flex;
     justify-content: flex-end;
-    background-color: var(--footer-background);
+    background-color: pink;
+}
+#input {
+    display: flex;
+    margin: 10px;
+    padding: 5px;
 }
 
-label {
+#live-question {
+    padding: 10px;
+    border: solid black 1px;
+}
+.top-section {
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.poll .options .buttons {
-    display: flex;
-    justify-content: space-around;
+.right-section, .left-section {
+    display: block;
+    padding: 15px;
+    border: solid black 2px;
 }
-
-.left-buttons {
-    display: flex;
+#publish-button, #start-input {
+    margin: 10px 50px;
+}
+.bottom-section {
+    display: block;
+    margin: 10px;
+    padding: 15px;
+    border: solid black 2px;
 }
